@@ -5,7 +5,6 @@ import * as PropTypes from 'prop-types';
 import CardData from './CardData';
 import CardStyle from './styles';
 
-
 const m = {
   '2_of_clubs': require('./card_images/2_of_clubs.png'),
   '2_of_diamonds': require('./card_images/2_of_diamonds.png'),
@@ -58,7 +57,7 @@ const m = {
   a_of_clubs: require('./card_images/a_of_clubs.png'),
   a_of_diamonds: require('./card_images/a_of_diamonds.png'),
   a_of_hearts: require('./card_images/a_of_hearts.png'),
-  a_of_spades: require('./card_images/a_of_spades.png'),
+  a_of_spades: require('./card_images/a_of_spades.png')
 };
 
 function getImage(card) {
@@ -69,14 +68,18 @@ function getImage(card) {
 const Card = ({ card }) => {
   if (card) {
     return (
-      <Image style={CardStyle.stretch} source={getImage(card)} />
+      <Image
+        style={CardStyle.stretch}
+        source={getImage(card)}
+        resizeMode="contain"
+      />
     );
   }
-  return (<View style={CardStyle.stretch} />);
+  return <View style={CardStyle.stretch} />;
 };
 
 Card.propTypes = {
-  card: PropTypes.instanceOf(CardData),
+  card: PropTypes.instanceOf(CardData)
 };
 
 export default Card;

@@ -10,10 +10,13 @@ import CardData from '../../deck/CardData';
 import DeckData from '../../deck/DeckData';
 import HiScore from '../../hiscore/views/HiScore';
 
-
 class GameContainer extends React.Component {
   _pickCard(card) {
-    if (this.props.card1 != null && this.props.card2 != null && this.props.deck.isEmpty) {
+    if (
+      this.props.card1 != null &&
+      this.props.card2 != null &&
+      this.props.deck.isEmpty
+    ) {
       this.props.finishGame(this.props.score1, this.props.score2);
     } else if (this.props.card1 != null && this.props.card2 != null) {
       this.props.evaluateRound();
@@ -26,13 +29,22 @@ class GameContainer extends React.Component {
     if (this.props.isGameInProgress) {
       return (
         <View style={Styles.container}>
-          <Text style={Styles.scoreLabel}>Player 1 - {this.props.score1} points</Text>
+          <Text style={Styles.scoreLabel}>
+            Player 1 - {this.props.score1} points
+          </Text>
           <View style={Styles.deckAndCardsContainer}>
-            <Deck deck={this.props.deck} onPickCard={card => this._pickCard(card)} />
-            <Card card={this.props.card1} />
-            <Card card={this.props.card2} />
+            <Deck
+              deck={this.props.deck}
+              onPickCard={card => this._pickCard(card)}
+            />
+            <View>
+              <Card card={this.props.card1} />
+              <Card card={this.props.card2} />
+            </View>
           </View>
-          <Text style={Styles.scoreLabel}>Player 2 - {this.props.score2} points</Text>
+          <Text style={Styles.scoreLabel}>
+            Player 2 - {this.props.score2} points
+          </Text>
         </View>
       );
     }
@@ -49,8 +61,9 @@ class GameContainer extends React.Component {
     if (this.props.isGameResult) {
       return (
         <View style={Styles.container}>
-          <Text style={Styles.scoreLabel}>Game finished. {this.props.winner} won with score
-            of {this.props.winnerScore}
+          <Text style={Styles.scoreLabel}>
+            Game finished. {this.props.winner} won with score of{' '}
+            {this.props.winnerScore}
           </Text>
           <HiScore />
           <Button title="Play again" onPress={this.props.startGame} />
@@ -76,7 +89,7 @@ GameContainer.propTypes = {
   pickCard: PropTypes.func.isRequired,
   evaluateRound: PropTypes.func.isRequired,
   startGame: PropTypes.func.isRequired,
-  finishGame: PropTypes.func.isRequired,
+  finishGame: PropTypes.func.isRequired
 };
 
 GameContainer.defaultProps = {
@@ -84,7 +97,7 @@ GameContainer.defaultProps = {
   card2: null,
   isGameResult: false,
   winner: null,
-  winnerScore: 0,
+  winnerScore: 0
 };
 
 const mapStateToProps = state => ({
@@ -96,19 +109,17 @@ const mapStateToProps = state => ({
   card1: state.game.cards[0],
   card2: state.game.cards[1],
 
-
   score1: state.game.scores[0],
   score2: state.game.scores[1],
   winner: state.menu.winner,
-  winnerScore: state.menu.score,
+  winnerScore: state.menu.score
 });
 
 const mapDispatchToProps = dispatch => ({
   pickCard: card => dispatch(pickCard(card)),
   evaluateRound: () => dispatch({ type: EvaluateRound }),
   startGame: () => dispatch({ type: StartGame }),
-  finishGame: (score1, score2) => dispatch(finishGame(score1, score2)),
+  finishGame: (score1, score2) => dispatch(finishGame(score1, score2))
 });
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(GameContainer);

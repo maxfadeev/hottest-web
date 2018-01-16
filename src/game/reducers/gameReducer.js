@@ -10,7 +10,7 @@ function getDefaultState() {
   return defaultState;
 }
 
-export default function(state = getDefaultState(), action) {
+export default function (state = getDefaultState(), action) {
   switch (action.type) {
     case StartGame:
       return getDefaultState();
@@ -30,7 +30,7 @@ export default function(state = getDefaultState(), action) {
       const card1 = state.cards[0].numericValue;
       const card2 = state.cards[1].numericValue;
       const { cards } = getDefaultState();
-      let scores = [...state.scores];
+      const scores = [...state.scores];
 
       if (card1 > card2) {
         scores[0] += 1;

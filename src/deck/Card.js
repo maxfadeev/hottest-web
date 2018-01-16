@@ -1,6 +1,6 @@
 import React from 'react';
 import { Image, View } from 'react-native';
-import * as PropTypes from "prop-types";
+import * as PropTypes from 'prop-types';
 
 import CardData from './CardData';
 import CardStyle from './styles';
@@ -75,7 +75,7 @@ const Card = ({ card }) => {
   return (<View style={CardStyle.stretch} />);
 };
 
-Card.propTypes={
+Card.propTypes = {
   card: PropTypes.instanceOf(CardData),
 };
 

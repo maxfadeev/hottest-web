@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Button, Text, View } from 'react-native';
 import Deck from '../../deck/Deck';
 import Card from '../../deck/Card';
-import { EvaluateRound, finishGame, pickCard, StartGame } from "../actions";
+import { EvaluateRound, finishGame, pickCard, StartGame } from '../actions';
 import Styles from './styles';
 import CardData from '../../deck/CardData';
 import DeckData from '../../deck/DeckData';
@@ -106,7 +106,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   pickCard: card => dispatch(pickCard(card)),
   evaluateRound: () => dispatch({ type: EvaluateRound }),
-  startGame: () => dispatch({type:StartGame}),
+  startGame: () => dispatch({ type: StartGame }),
   finishGame: (score1, score2) => dispatch(finishGame(score1, score2)),
 });
 

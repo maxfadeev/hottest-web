@@ -27,13 +27,33 @@ describe('gameReducer', () => {
 
   it('should handle PickCard', () => {
     expect(
+      reducer(defaultState, {
+        type: types.PickCard,
+        card: 'card1'
+      })
+    ).toEqual({
+      activePlayer: 1,
+      cards: ['card1', null],
+      scores: [0, 0]
+    });
+  });
+
+  it('should handle EvaluateRound', () => {
+    const card1 = { numericValue: 10 };
+    const card2 = { numericValue: 9 };
+    expect(
       reducer(
-        {},
         {
-          type: types.PickCard,
-          card: 'card1'
-        }
+          activePlayer: 0,
+          cards: [card1, card2],
+          scores: [0, 0]
+        },
+        { type: types.EvaluateRound }
       )
-    );
+    ).toEqual({
+      activePlayer: 0,
+      cards: defaultState.cards,
+      scores: [1, 0]
+    });
   });
 });

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import connect from 'react-redux/es/connect/connect';
 import PropTypes from 'prop-types';
-import { Button, Text, View } from 'react-native';
+import { Button, Text, View, Animated } from 'react-native';
 import Deck from '../../deck/Deck';
 import Card from '../../deck/Card';
 import { EvaluateRound, finishGame, pickCard, StartGame } from '../actions';
@@ -11,6 +11,14 @@ import DeckData from '../../deck/DeckData';
 import HiScore from '../../hiscore/views/HiScore';
 
 class GameContainer extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      translateX: new Animated.Value(-25)
+    };
+  }
+
   _pickCard(card) {
     if (
       this.props.card1 != null &&
@@ -20,9 +28,20 @@ class GameContainer extends React.Component {
       this.props.finishGame(this.props.score1, this.props.score2);
     } else if (this.props.card1 != null && this.props.card2 != null) {
       this.props.evaluateRound();
+      this.setState({
+        translateX: new Animated.Value(-25)
+      });
     } else {
       this.props.pickCard(card);
+      this.animate();
     }
+  }
+
+  animate() {
+    Animated.timing(this.state.translateX, {
+      toValue: 0,
+      duration: 500
+    }).start();
   }
 
   render() {
@@ -38,8 +57,36 @@ class GameContainer extends React.Component {
               onPickCard={card => this._pickCard(card)}
             />
             <View>
-              <Card card={this.props.card1} />
-              <Card card={this.props.card2} />
+              <Animated.View
+                style={{
+                  transform: [
+                    { translateX: this.state.translateX },
+                    {
+                      translateY: this.state.translateX.interpolate({
+                        inputRange: [-25, 0],
+                        outputRange: [83, 0]
+                      })
+                    }
+                  ]
+                }}
+              >
+                <Card card={this.props.card1} />
+              </Animated.View>
+              <Animated.View
+                style={{
+                  transform: [
+                    { translateX: this.state.translateX },
+                    {
+                      translateY: this.state.translateX.interpolate({
+                        inputRange: [-25, 0],
+                        outputRange: [83, 0]
+                      })
+                    }
+                  ]
+                }}
+              >
+                <Card card={this.props.card2} />
+              </Animated.View>
             </View>
           </View>
           <Text style={Styles.scoreLabel}>

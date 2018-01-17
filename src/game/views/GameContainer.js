@@ -79,7 +79,7 @@ class GameContainer extends React.Component {
                     {
                       translateY: this.state.translateX.interpolate({
                         inputRange: [-25, 0],
-                        outputRange: [83, 0]
+                        outputRange: [-83, 0]
                       })
                     }
                   ]

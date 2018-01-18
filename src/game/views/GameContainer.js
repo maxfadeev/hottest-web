@@ -8,7 +8,7 @@ import { EvaluateRound, finishGame, pickCard, StartGame } from '../actions';
 import Styles from './styles';
 import CardData from '../../deck/CardData';
 import DeckData from '../../deck/DeckData';
-import HiScore from '../../hiscore/views/HiScore';
+import HiScoreContainer from '../../hiscore/containers/HiScoreContainer';
 
 class GameContainer extends React.Component {
   constructor(props) {
@@ -112,7 +112,7 @@ class GameContainer extends React.Component {
             Game finished. {this.props.winner} won with score of{' '}
             {this.props.winnerScore}
           </Text>
-          <HiScore />
+          <HiScoreContainer />
           <Button title="Play again" onPress={this.props.startGame} />
         </View>
       );

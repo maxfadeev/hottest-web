@@ -2,7 +2,6 @@ import * as CardValues from './CardValues';
 import * as CardSuits from './CardSuits';
 import CardData from './CardData';
 
-
 const allCards = [
   new CardData(CardValues.VALUE_2, CardSuits.CLUBS),
   new CardData(CardValues.VALUE_3, CardSuits.CLUBS),
@@ -58,7 +57,7 @@ const allCards = [
   new CardData(CardValues.VALUE_J, CardSuits.SPADES),
   new CardData(CardValues.VALUE_Q, CardSuits.SPADES),
   new CardData(CardValues.VALUE_K, CardSuits.SPADES),
-  new CardData(CardValues.VALUE_A, CardSuits.SPADES),
+  new CardData(CardValues.VALUE_A, CardSuits.SPADES)
 ];
 
 class DeckData {

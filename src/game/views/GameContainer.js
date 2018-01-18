@@ -5,6 +5,7 @@ import { Button, Text, View, Animated } from 'react-native';
 import Deck from '../../deck/Deck';
 import Card from '../../deck/Card';
 import { EvaluateRound, finishGame, pickCard, StartGame } from '../actions';
+// It's a bad practice when styles are used in a container
 import Styles from './styles';
 import CardData from '../../deck/CardData';
 import DeckData from '../../deck/DeckData';

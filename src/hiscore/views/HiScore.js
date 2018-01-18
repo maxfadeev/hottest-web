@@ -1,11 +1,13 @@
 import React from 'react';
-import { Text, View, FlatList } from 'react-native';
+import { Text, View } from 'react-native';
 import * as PropTypes from 'prop-types';
 
 const HiScore = ({ hiscore }) => (
   <View style={{ height: 200, backgroundColor: '#afa', margin: 10 }}>
     <Text>Player Score</Text>
-    {hiscore.map(s => (
+    {// @TODO: Rewrite using FlatLst as soon as it is ready
+    // @link: https://github.com/necolas/react-native-web/issues/91
+    hiscore.map(s => (
       <Text>
         {s.player} {s.score}
       </Text>
